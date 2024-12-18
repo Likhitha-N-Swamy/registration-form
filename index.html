@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VTU Exam Registration Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-center">
+                <h1>VISVESVARAYA TECHNOLOGICAL UNIVERSITY, BELAGAVI</h1>
+                <h2>UG Student Application Form</h2>
+            </div>
+        </header>
+        <form id="examForm" enctype="multipart/form-data" method="POST" action="display.php">
+            <section class="form-section">
+                <h3>Student Details</h3>
+                <div class="form-row">
+                    <label>USN:</label>
+                    <input type="text" name="usn" required>
+                </div>
+                <div class="form-row">
+                    <label>Student Name:</label>
+                    <input type="text" name="studentName" required>
+                </div>
+                <div class="form-row">
+                    <label>Branch Code:</label>
+                    <input type="text" name="branch" required>
+                </div>
+                <div class="form-row">
+                    <label>Semester:</label>
+                    <input type="text" name="semester" required>
+                </div>
+                <div class="form-row">
+                    <label>College:</label>
+                    <input type="text" name="college" required>
+                </div>
+                <div class="form-row">
+                    <label>Upload Photo:</label>
+                    <input type="file" name="photo" accept="image/*" required>
+                </div>
+            </section>
+            <section class="form-section">
+                <h3>Regular Subjects</h3>
+                <table class="subject-table">
+                    <thead>
+                        <tr>
+                            <th>Subject Code</th>
+                            <th>Subject Name</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" name="subjectCode[]" required></td>
+                            <td><input type="text" name="subjectName[]" required></td>
+                            <td>
+                                <select name="status[]" required>
+                                    <option value="Applied">Applied</option>
+                                    <option value="Unapplied">Unapplied</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="button" id="addRow">Add Subject</button>
+            </section>
+            <section class="form-section">
+                <h3>Fee Details</h3>
+                <table class="fee-table">
+                    <thead>
+                        <tr>
+                            <th>SL No</th>
+                            <th>Description</th>
+                            <th>Fees</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Application Fees</td>
+                            <td><input type="number" name="feeAmount[]" required></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section class="form-footer">
+                <p>
+                    I declare that I have applied only for the subjects mentioned above for the upcoming VTU examination.
+                </p>
+                <div class="footer-row">
+                    <label>Date:</label>
+                    <input type="date" name="date" required>
+                </div>
+            </section>
+            <button type="submit" class="btn-submit">Submit</button>
+        </form>
+    </div>
+    <script>
+        // Add Row Functionality
+        document.getElementById('addRow').addEventListener('click', function () {
+            const tableBody = document.querySelector('.subject-table tbody');
+            const newRow = document.createElement('tr');
+
+            newRow.innerHTML = `
+                <td><input type="text" name="subjectCode[]" required></td>
+                <td><input type="text" name="subjectName[]" required></td>
+                <td>
+                    <select name="status[]" required>
+                        <option value="Applied">Applied</option>
+                        <option value="Unapplied">Unapplied</option>
+                    </select>
+                </td>
+            `;
+
+            tableBody.appendChild(newRow);
+        });
+    </script>
+</body>
+</html>
